@@ -1,45 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#2563eb">
+<meta name="description" content="HFJV压力单位转换器，支持MPa、bar、psi、kPa、cmH₂O">
 <link rel="manifest" href="manifest.json">
-<title>HFJV压力单位转换器</title>
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>HFJV压力转换器</title>
 <style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;color:#1f2937;background:#f5f7fb}
-*{box-sizing:border-box} body{margin:0;min-height:100vh;background:linear-gradient(#eef5ff,#f7f9fc)}
-.app{max-width:560px;margin:0 auto;padding:28px 18px 40px}
-.card{background:white;border-radius:22px;padding:22px;box-shadow:0 8px 30px rgba(15,23,42,.08)}
-h1{font-size:24px;margin:0 0 6px;color:#1d4ed8} .sub{color:#64748b;font-size:14px;margin-bottom:22px}
-label{display:block;font-size:14px;font-weight:600;margin:14px 0 7px}
-input,select{width:100%;height:52px;border:1px solid #d7dee9;border-radius:13px;padding:0 14px;font-size:18px;background:#fff;outline:none}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(145deg,#eef5ff,#f7faff);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;color:#172033}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 40px}
+.card{background:#fff;border-radius:24px;padding:30px;box-shadow:0 12px 40px rgba(35,82,160,.12)}
+h1{margin:0;color:#2563eb;font-size:30px}
+.sub{margin:8px 0 28px;color:#6b7a90;font-size:15px}
+label{display:block;font-weight:700;margin:16px 0 8px}
+input,select{width:100%;height:58px;border:1px solid #d5dfef;border-radius:15px;padding:0 16px;font-size:18px;background:#fff;color:#172033;outline:none}
 input:focus,select:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
-.row{display:grid;grid-template-columns:1fr 52px 1fr;gap:10px;align-items:end}
-.swap{height:52px;border:0;border-radius:13px;background:#e8f0ff;color:#2563eb;font-size:23px;cursor:pointer}
-button.convert{width:100%;height:54px;margin-top:20px;border:0;border-radius:14px;background:#2563eb;color:white;font-size:17px;font-weight:700;cursor:pointer}
-.result{margin-top:18px;padding:18px;border-radius:15px;background:#eff6ff;border:1px solid #dbeafe}
-.result .small{font-size:13px;color:#64748b;margin-bottom:7px}.result .value{font-size:26px;font-weight:750;color:#1e40af;word-break:break-all}
-.copy{margin-top:10px;border:1px solid #bfdbfe;background:white;color:#1d4ed8;border-radius:10px;padding:9px 14px;font-size:14px}
-.note{margin-top:16px;color:#64748b;font-size:12px;line-height:1.6}
-@media(max-width:390px){.row{grid-template-columns:1fr 44px 1fr}.app{padding:20px 12px}.card{padding:18px}}
+.row{display:grid;grid-template-columns:1fr 64px 1fr;gap:12px;align-items:end}
+.swap{height:58px;border:0;border-radius:15px;background:#eaf1ff;color:#2563eb;font-size:30px;cursor:pointer}
+button.convert{width:100%;height:58px;border:0;border-radius:15px;background:#2563eb;color:#fff;font-size:20px;font-weight:700;margin-top:26px;cursor:pointer}
+.result{margin-top:24px;padding:24px;border-radius:20px;background:#eef6ff;border:1px solid #d7e8ff}
+.result-title{color:#71809a;font-size:15px}
+.value{margin:8px 0 16px;color:#2454c6;font-size:31px;font-weight:800;word-break:break-word}
+.copy{height:44px;padding:0 18px;border:1px solid #9fc2ff;border-radius:12px;background:#fff;color:#2563eb;font-size:15px;cursor:pointer}
+.note{margin-top:24px;color:#71809a;font-size:13px;line-height:1.7}
+.install{display:none;margin-top:18px;width:100%;height:48px;border:0;border-radius:13px;background:#eaf1ff;color:#2563eb;font-weight:700}
+@media(max-width:520px){.card{padding:22px;border-radius:20px}h1{font-size:26px}.row{grid-template-columns:1fr 52px 1fr;gap:8px}.swap{font-size:24px}}
 </style>
 </head>
 <body>
-<div class="app"><div class="card">
+<div class="wrap">
+<div class="card">
 <h1>HFJV 压力单位转换器</h1>
 <div class="sub">支持 MPa · bar · psi · kPa · cmH₂O</div>
-<label>输入数值</label>
-<input id="num" type="number" inputmode="decimal" step="any" value="1" placeholder="请输入数值">
+
+<label for="num">输入数值</label>
+<input id="num" type="number" inputmode="decimal" step="any" value="25" placeholder="请输入数值">
+
 <div class="row">
-<div><label>原单位</label><select id="from"></select></div>
+<div><label for="from">原单位</label><select id="from"></select></div>
 <button class="swap" id="swap" aria-label="交换单位">⇄</button>
-<div><label>目标单位</label><select id="to"></select></div>
+<div><label for="to">目标单位</label><select id="to"></select></div>
 </div>
+
 <button class="convert" id="convert">转换</button>
-<div class="result"><div class="small">转换结果</div><div class="value" id="result">—</div><button class="copy" id="copy">复制结果</button></div>
-<div class="note">换算基准：1 MPa = 10 bar = 1000 kPa = 145.037738 psi = 1019.716213 cmH₂O</div>
-</div></div>
+
+<div class="result">
+<div class="result-title">转换结果</div>
+<div class="value" id="result">—</div>
+<button class="copy" id="copy">复制结果</button>
+</div>
+
+<button class="install" id="install">安装到手机</button>
+
+<div class="note">
+换算基准：1 MPa = 10 bar = 1000 kPa = 145.037738 psi = 1019.716213 cmH₂O
+</div>
+</div>
+</div>
 <script>
 const units={
   MPa:1,
@@ -47,18 +67,27 @@ const units={
   kPa:0.001,
   psi:1/145.037738,
   "cmH₂O":1/1019.716213
-}; // value is MPa
-const names=Object.keys(units);
-const from=document.getElementById('from'),to=document.getElementById('to'),num=document.getElementById('num'),result=document.getElementById('result');
-for(const u of names){from.add(new Option(u,u));to.add(new Option(u,u))}
-from.value='bar';to.value='kPa';
-function fmt(x){if(!Number.isFinite(x)) return '请输入有效数值'; return Number(x.toPrecision(12)).toLocaleString('en-US',{maximumFractionDigits:10})+' '+to.value}
-function calc(){const x=Number(num.value); if(num.value===''){result.textContent='—';return} result.textContent=fmt(x*units[from.value]/units[to.value]);}
-document.getElementById('convert').onclick=calc;
-num.addEventListener('input',calc); from.onchange=calc; to.onchange=calc;
-document.getElementById('swap').onclick=()=>{const a=from.value;from.value=to.value;to.value=a;calc()};
-document.getElementById('copy').onclick=async()=>{if(result.textContent==='—')return; try{await navigator.clipboard.writeText(result.textContent);document.getElementById('copy').textContent='已复制';setTimeout(()=>document.getElementById('copy').textContent='复制结果',1200)}catch(e){}};
-calc();
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+};
+const from=document.getElementById("from"),to=document.getElementById("to"),num=document.getElementById("num"),result=document.getElementById("result");
+Object.keys(units).forEach(u=>{from.add(new Option(u,u));to.add(new Option(u,u));});
+from.value="psi";to.value="MPa";
+function convert(){
+ const n=Number(num.value);
+ if(!Number.isFinite(n)){result.textContent="请输入有效数值";return;}
+ const v=n*units[from.value]/units[to.value];
+ result.textContent=v.toPrecision(10).replace(/\.?0+$/,"")+" "+to.value;
+}
+document.getElementById("convert").onclick=convert;
+document.getElementById("swap").onclick=()=>{const x=from.value;from.value=to.value;to.value=x;convert();};
+document.getElementById("copy").onclick=async()=>{try{await navigator.clipboard.writeText(result.textContent);document.getElementById("copy").textContent="已复制";setTimeout(()=>document.getElementById("copy").textContent="复制结果",1200)}catch(e){}};
+num.addEventListener("keydown",e=>{if(e.key==="Enter")convert()});
+convert();
+
+let deferredPrompt;
+const installBtn=document.getElementById("install");
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display="block";});
+installBtn.onclick=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display="none";};
+if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));
 </script>
-</body></html>
+</body>
+</html>

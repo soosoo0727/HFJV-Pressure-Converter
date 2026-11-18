@@ -1,0 +1,15 @@
+{
+  "name": "HFJV压力转换器",
+  "short_name": "HFJV压力转换",
+  "description": "HFJV压力单位转换器，支持MPa、bar、psi、kPa、cmH₂O",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7faff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
